@@ -1,0 +1,9 @@
+{
+  "name": "refine-test-app",
+  "private": true,
+  "workspaces": ["admin", "api"],
+  "scripts": {
+    "dev:admin": "npm --prefix admin run dev",
+    "dev:api": "npm --prefix api run start:dev"
+  }
+}
