@@ -1,6 +1,14 @@
 import { EEntities } from 'src/shared-components/enums/entities.enum';
-import { Column, Entity, PrimaryGeneratedColumn, VirtualColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  VirtualColumn,
+} from 'typeorm';
 import { EUserRole } from '../enums/user-role.enum';
+import { MeetingEntity } from 'src/meetings/entities/meeting.entity';
 
 @Entity(EEntities.USERS)
 export class UserEntity {
@@ -43,4 +51,7 @@ export class UserEntity {
 
   @Column({ type: 'varchar', default: null, nullable: true })
   public password: string;
+
+  @OneToMany(() => MeetingEntity, (meeting) => meeting.createdBy)
+  public createdMeetings: MeetingEntity[];
 }

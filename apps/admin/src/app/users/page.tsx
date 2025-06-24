@@ -10,8 +10,16 @@ import {
 } from "@refinedev/mui";
 import React from "react";
 
+interface IUser {
+  id: number;
+  role: string;
+  fullName: string;
+  email: string;
+  phone: string;
+}
+
 export default function UsersList() {
-  const { dataGridProps } = useDataGrid({});
+  const { dataGridProps } = useDataGrid<IUser>();
 
   const columns = React.useMemo<GridColDef[]>(
     () => [
