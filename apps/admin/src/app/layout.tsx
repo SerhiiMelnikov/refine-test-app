@@ -1,3 +1,4 @@
+// app/layout.tsx
 import { AppIcon } from "@components/app-icon";
 import { ColorModeContextProvider } from "@contexts/color-mode";
 import { authProviderClient } from "@providers/auth-provider/auth-provider.client";
@@ -12,7 +13,7 @@ import routerProvider from "@refinedev/nextjs-router";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import React, { Suspense } from "react";
-
+import { ClientLayout } from "./client-layout";
 
 export const metadata: Metadata = {
   title: "Refine",
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -54,6 +55,10 @@ export default function RootLayout({
                         canDelete: true,
                       },
                     },
+                    {
+                      name: "meetings",
+                      list: "/meetings",
+                    },
                   ]}
                   options={{
                     syncWithLocation: true,
@@ -63,7 +68,9 @@ export default function RootLayout({
                     title: { text: "Refine Test", icon: <AppIcon /> },
                   }}
                 >
-                  {children}
+                  <ClientLayout>
+                    {children}
+                  </ClientLayout>
                   <RefineKbar />
                 </Refine>
               </RefineSnackbarProvider>

@@ -1,9 +1,20 @@
 {
   "name": "refine-test-app",
   "private": true,
-  "workspaces": ["admin", "api"],
+  "workspaces": [
+    "admin",
+    "api"
+  ],
   "scripts": {
     "dev:admin": "npm --prefix admin run dev",
     "dev:api": "npm --prefix api run start:dev"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
